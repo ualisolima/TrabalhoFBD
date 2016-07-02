@@ -4,32 +4,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import br.ufc.TrabalhoFBD.DAO.EnderecoDAO;
+import br.ufc.TrabalhoFBD.DAO.TelefoneDAO;
 import br.ufc.TrabalhoFBD.connection.FabricaDeConexao;
-import br.ufc.TrabalhoFBD.model.Endereco;
+import br.ufc.TrabalhoFBD.model.Telefone;
 
-public class EnderecoDAOImpl implements EnderecoDAO{
+public class TelefoneDAOImpl implements TelefoneDAO {
 
 	@Override
-	public void inserir(Endereco endereco) {
+	public void inserir(Telefone telefone) {
 		// TODO Auto-generated method stub
 		
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "insert into endereco (cep,pais,estado,cidade,rua)values(?,?,?,?,?)";	
+		String sql = "insert into telefone (usuario_id,telefone)values(?,?)";	
 		PreparedStatement stmt;
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, endereco.getCep());
-			stmt.setString(2, endereco.getPais());
-			stmt.setString(3, endereco.getEstado());
-			stmt.setString(4, endereco.getCidade());
-			stmt.setString(5, endereco.getRua());
-		
+			stmt.setLong(1, telefone.getUsuario().getIdUsuario());
+			stmt.setString(2, telefone.getTelefone());
 			
 			stmt.execute();
 			stmt.close();
 			conn.close();
-			
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,25 +34,25 @@ public class EnderecoDAOImpl implements EnderecoDAO{
 	}
 
 	@Override
-	public void alterar(Endereco endereco) {
+	public void alterar(Telefone telefone) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Endereco recuperarByLogin(String login) {
+	public Telefone recuperarByLogin(String login) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Endereco recuperarById(Long id) {
+	public Telefone recuperarById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void apagar(Endereco endereco) {
+	public void apagar(Telefone telefone) {
 		// TODO Auto-generated method stub
 		
 	}

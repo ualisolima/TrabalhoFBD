@@ -4,27 +4,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import br.ufc.TrabalhoFBD.DAO.EnderecoDAO;
+import br.ufc.TrabalhoFBD.DAO.GrupoDAO;
 import br.ufc.TrabalhoFBD.connection.FabricaDeConexao;
-import br.ufc.TrabalhoFBD.model.Endereco;
+import br.ufc.TrabalhoFBD.model.Grupo;
 
-public class EnderecoDAOImpl implements EnderecoDAO{
+public class GrupoDAOImpl implements GrupoDAO {
 
 	@Override
-	public void inserir(Endereco endereco) {
+	public void inserir(Grupo grupo) {
 		// TODO Auto-generated method stub
 		
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "insert into endereco (cep,pais,estado,cidade,rua)values(?,?,?,?,?)";	
+		String sql = "insert into grupo (dt_criacao,adm_id,nome)values(?,?,?)";	
 		PreparedStatement stmt;
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, endereco.getCep());
-			stmt.setString(2, endereco.getPais());
-			stmt.setString(3, endereco.getEstado());
-			stmt.setString(4, endereco.getCidade());
-			stmt.setString(5, endereco.getRua());
-		
+			stmt.setDate(1, grupo.getDtCriacao());
+			stmt.setLong(2, grupo.getIdAdm());
+			stmt.setString(3,grupo.getNomeGrupo());
 			
 			stmt.execute();
 			stmt.close();
@@ -38,25 +35,25 @@ public class EnderecoDAOImpl implements EnderecoDAO{
 	}
 
 	@Override
-	public void alterar(Endereco endereco) {
+	public void alterar(Grupo grupo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Endereco recuperarByLogin(String login) {
+	public Grupo recuperarByLogin(String login) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Endereco recuperarById(Long id) {
+	public Grupo recuperarById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void apagar(Endereco endereco) {
+	public void apagar(Grupo grupo) {
 		// TODO Auto-generated method stub
 		
 	}
