@@ -1,10 +1,8 @@
-package br.ufc.TrabalhoFBD.model.impl;
+package br.ufc.TrabalhoFBD.DAO.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import org.apache.tomcat.util.codec.EncoderException;
 
 import br.ufc.TrabalhoFBD.DAO.UsuarioDAO;
 import br.ufc.TrabalhoFBD.connection.FabricaDeConexao;
