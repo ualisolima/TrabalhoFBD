@@ -1,4 +1,4 @@
-package br.ufc.TrabalhoFBD.model.impl;
+package br.ufc.TrabalhoFBD.DAO.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
