@@ -8,7 +8,6 @@ public class Grupo {
 	private Long idGrupo;
 	private String nomeGrupo;
 	private Date dtCriacao;
-	private Long idAdm;
 	private Usuario amd;
 	private List<Usuario> usuarios;
 	//List de mensagens em grupo
@@ -43,12 +42,6 @@ public class Grupo {
 	}
 	public void setDtCriacao(Date dtCriacao) {
 		this.dtCriacao = dtCriacao;
-	}
-	public Long getIdAdm() {
-		return idAdm;
-	}
-	public void setIdAdm(Long idAdm) {
-		this.idAdm = idAdm;
 	}
 	public Usuario getAmd() {
 		return amd;

@@ -1,17 +1,20 @@
 package br.ufc.TrabalhoFBD.DAO;
 
+import java.util.List;
+
 import br.ufc.TrabalhoFBD.model.Telefone;
+import br.ufc.TrabalhoFBD.model.Usuario;
 
 public interface TelefoneDAO {
 
 public void inserir(Telefone telefone);
 	
-	public void alterar(Telefone telefone);
+	public boolean alterar(Telefone telefone);
 	
-	public Telefone recuperarByLogin(String login);
+	public Telefone recuperarById(Usuario usuario, String telefone);
 	
-	public Telefone recuperarById(Long id);
+	public List<Telefone> getTelefones(Usuario usuario);
 	
-	public void apagar(Telefone telefone);
+	public boolean apagar(Telefone telefone);
 	
 }

@@ -6,12 +6,6 @@ public interface LogDAO {
 
 public void inserir(Log log);
 	
-	public void alterar(Log log);
-	
-	public Log recuperarByLogin(String login);
-	
-	public Log recuperarById(Long id);
-	
-	public void apagar(Log log);
-	
+public Log recuperarById(Long id);
+		
 }

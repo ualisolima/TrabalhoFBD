@@ -1,17 +1,20 @@
 package br.ufc.TrabalhoFBD.DAO;
 
+import java.util.List;
+
+import br.ufc.TrabalhoFBD.model.Grupo;
 import br.ufc.TrabalhoFBD.model.MensagemGrupo;
+import br.ufc.TrabalhoFBD.model.Usuario;
 
 public interface MensagemGrupoDAO {
 
 public void inserir(MensagemGrupo mensagemGrupo);
 	
-	public void alterar(MensagemGrupo mensagemGrupo);
-	
-	public MensagemGrupo recuperarByLogin(String login);
-	
 	public MensagemGrupo recuperarById(Long id);
 	
-	public void apagar(MensagemGrupo mensagemGrupo);
+	public List<MensagemGrupo> getMensagensGrupo(Grupo grupo);
+	
+	public Usuario getRemetente(Long idMensagem);
+
 	
 }

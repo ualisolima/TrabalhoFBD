@@ -1,17 +1,16 @@
 package br.ufc.TrabalhoFBD.DAO;
 
+import java.util.List;
+
 import br.ufc.TrabalhoFBD.model.Amigo;
+import br.ufc.TrabalhoFBD.model.Usuario;
 
 public interface AmigoDAO {
 	
-public void inserir(Amigo usuario);
+public void inserir(Amigo amigo);
 	
-	public void alterar(Amigo usuario);
+	public List<Usuario> getAmigos(Usuario usuario);
 	
-	public Amigo recuperarByLogin(String login);
-	
-	public Amigo recuperarById(Long id);
-	
-	public void apagar(Amigo usuario);
+	public boolean apagar(Amigo amigo);
 
 }

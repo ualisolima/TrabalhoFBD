@@ -10,8 +10,6 @@ public class Usuario {
 	private String pNome;
 	private String mNome;
 	private String uNome;
-	private String cep;
-	private String pais;
 	//Na tabela que é "possuida" pela entidade mais forte, a entidade vira um objeto comum;
 	private Endereco endereco;
 	private String nCasa;
@@ -115,23 +113,7 @@ public class Usuario {
 	public void setuNome(String uNome) {
 		this.uNome = uNome;
 	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
+	
 	public String getnCasa() {
 		return nCasa;
 	}

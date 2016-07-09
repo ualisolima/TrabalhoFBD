@@ -1,17 +1,23 @@
 package br.ufc.TrabalhoFBD.DAO;
 
+import java.util.List;
+
 import br.ufc.TrabalhoFBD.model.Grupo;
+import br.ufc.TrabalhoFBD.model.Usuario;
 
 public interface GrupoDAO {
 
 public void inserir(Grupo grupo);
 	
-	public void alterar(Grupo grupo);
+	public boolean alterar(Grupo grupo);
 	
-	public Grupo recuperarByLogin(String login);
+	public Grupo recuperarById(Long idGrupo);
 	
-	public Grupo recuperarById(Long id);
+	public boolean apagar(Grupo grupo);
 	
-	public void apagar(Grupo grupo);
+	public List<Grupo> getGrupos(Usuario usuario);
 	
+	public List<Usuario> getUsuarios(Long idGrupo);
+	
+	public List<Grupo> getGruposAdm(Usuario usuario);
 }

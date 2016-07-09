@@ -2,7 +2,10 @@ package br.ufc.TrabalhoFBD.DAO.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.ufc.TrabalhoFBD.DAO.EnderecoDAO;
 import br.ufc.TrabalhoFBD.connection.FabricaDeConexao;
@@ -38,26 +41,52 @@ public class EnderecoDAOImpl implements EnderecoDAO{
 	}
 
 	@Override
-	public void alterar(Endereco endereco) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Endereco recuperarByLogin(String login) {
-		// TODO Auto-generated method stub
+	public Endereco recuperarById(String cep, String pais) {
+		Connection conn = FabricaDeConexao.retornarConexao();
+		String sql = "select * from endereco where cep = ? and pais = ?";
+		PreparedStatement stmt;
+		List<Endereco> enderecos = new ArrayList<Endereco>();
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, cep);
+			stmt.setString(2, pais);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				Endereco e = new Endereco();
+				e.setCep(cep);
+				e.setPais(pais);
+				e.setCidade(rs.getString("cidade"));
+				e.setEstado(rs.getString("estado"));
+				e.setRua(rs.getString("rua"));
+				enderecos.add(e);
+				
+			}
+			return enderecos.get(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
+	
 	@Override
-	public Endereco recuperarById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void apagar(Endereco endereco) {
-		// TODO Auto-generated method stub
+	public boolean apagar(Endereco endereco) {
+		Connection conn = FabricaDeConexao.retornarConexao();
+		String sql = "DELETE FROM endereco WHERE cep=? and pais=?";
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, endereco.getCep());
+			stmt.setString(2, endereco.getPais());
+			stmt.execute();
+			stmt.close();
+			conn.close();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 		
 	}
 

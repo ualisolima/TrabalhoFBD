@@ -8,7 +8,7 @@ public class FabricaDeConexao {
 	public static Connection retornarConexao(){
 		try {
 			Connection conexao = DriverManager.getConnection(
-					"jdbc:mysql://localhost/TrabalhoFBD",
+					"jdbc:mysql://localhost/trabalho_fbd",
 					"root",
 					"root");
 			System.out.println("CONECTADO COM SUCESSO!");

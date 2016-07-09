@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 public class Log {
 	
 	private Long idLog;
-	private Long idUsuario;
 	private Timestamp dataHorario;
 	//Log pertence a um usuario
 	private Usuario usuario;
@@ -15,12 +14,6 @@ public class Log {
 	}
 	public void setIdLog(Long idLog) {
 		this.idLog = idLog;
-	}
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
 	}
 	public Timestamp getDataHorario() {
 		return dataHorario;

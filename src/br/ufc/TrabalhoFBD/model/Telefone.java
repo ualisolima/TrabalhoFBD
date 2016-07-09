@@ -2,15 +2,16 @@ package br.ufc.TrabalhoFBD.model;
 
 public class Telefone {
 	
-	private Long idUsuario;
 	private String telefone;
+	private Long idTelefone;
 	//Telefone pertence a um usuario
 	private Usuario usuario;
-	public Long getIdUsuario() {
-		return idUsuario;
+	
+	public Long getIdTelefone() {
+		return idTelefone;
 	}
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setIdTelefone(Long idTelefone) {
+		this.idTelefone = idTelefone;
 	}
 	public String getTelefone() {
 		return telefone;

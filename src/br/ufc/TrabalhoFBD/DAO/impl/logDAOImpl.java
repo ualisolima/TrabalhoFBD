@@ -8,7 +8,7 @@ import br.ufc.TrabalhoFBD.DAO.LogDAO;
 import br.ufc.TrabalhoFBD.connection.FabricaDeConexao;
 import br.ufc.TrabalhoFBD.model.Log;
 
-public class logDAOImpl implements LogDAO {
+public class LogDAOImpl implements LogDAO {
 
 	@Override
 	public void inserir(Log log) {
@@ -16,7 +16,7 @@ public class logDAOImpl implements LogDAO {
 		
 
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "insert into grupo (usuario_id,data_horario)values(?,?)";	
+		String sql = "insert into grupo (Log_id,data_horario)values(?,?)";	
 		PreparedStatement stmt;
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -35,27 +35,9 @@ public class logDAOImpl implements LogDAO {
 	}
 
 	@Override
-	public void alterar(Log log) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Log recuperarByLogin(String login) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Log recuperarById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void apagar(Log log) {
-		// TODO Auto-generated method stub
 		
+		return null;
 	}
 
 }
