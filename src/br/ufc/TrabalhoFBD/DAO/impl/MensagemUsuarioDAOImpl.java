@@ -42,7 +42,7 @@ public class MensagemUsuarioDAOImpl implements MensagemUsuarioDAO{
 	@Override
 	public MensagemUsuario recuperarById(Long id) {
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "SELECT * from mensagem_grupo where mensagem_id = ?";
+		String sql = "SELECT * from mensagem_usuario where mensagem_id = ? ORDER BY data_hora_envio DESC";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setLong(1, id);
@@ -50,7 +50,7 @@ public class MensagemUsuarioDAOImpl implements MensagemUsuarioDAO{
 			List<MensagemUsuario> mensagens = new ArrayList<MensagemUsuario>();
 			while(rs.next()){
 				MensagemUsuario m = new MensagemUsuario();
-				m.setIdMensagem(rs.getLong("mensaem_id"));
+				m.setIdMensagem(rs.getLong("mensagem_id"));
 				m.setRemetente(getRemetente(m.getIdMensagem()));
 				m.setDestinatario(getDestinatario(m.getIdMensagem()));
 				m.setCorpo(rs.getString("corpo"));
@@ -59,7 +59,8 @@ public class MensagemUsuarioDAOImpl implements MensagemUsuarioDAO{
 			}
 			stmt.close();
 			conn.close();
-			return mensagens.get(0);
+			if (mensagens.size() > 0)
+				return mensagens.get(0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,11 +91,37 @@ public class MensagemUsuarioDAOImpl implements MensagemUsuarioDAO{
 		}
 		return null;
 	}
+	
+	@Override
+	public List<MensagemUsuario> getConversa(Long idUsuario1, Long idUsuario2) {
+		Connection conn = FabricaDeConexao.retornarConexao();
+		String sql = "select * from mensagem_usuario where (remetente = ? AND destinatario = ?) OR (remetente = ? AND destinatario = ?)";
+		PreparedStatement stmt;
+		List<MensagemUsuario> mensagens = new ArrayList<MensagemUsuario>();
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setLong(1, idUsuario1);
+			stmt.setLong(2, idUsuario2);
+			stmt.setLong(4, idUsuario1);
+			stmt.setLong(3, idUsuario2);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				MensagemUsuario m = recuperarById(rs.getLong("mensagem_id"));
+				mensagens.add(m);
+				
+			}
+			return mensagens;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@Override
 	public Usuario getRemetente(Long idMensagem) {
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "SELECT usuario_id, pNome, mNome, uNome, login FROM FROM usuario as u, mensagem_usuario as g  "
+		String sql = "SELECT usuario_id, pNome, mNome, uNome, login FROM usuario as u, mensagem_usuario as g  "
 				+ "WHERE g.mensagem_id=? "
 				+ "AND g.remetente = u.usuario_id";
 		try {
@@ -124,7 +151,7 @@ public class MensagemUsuarioDAOImpl implements MensagemUsuarioDAO{
 	@Override
 	public Usuario getDestinatario(Long idMensagem) {
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "SELECT usuario_id, pNome, mNome, uNome, login FROM FROM usuario as u, mensagem_usuario as g  "
+		String sql = "SELECT usuario_id, pNome, mNome, uNome, login FROM usuario as u, mensagem_usuario as g  "
 				+ "WHERE g.mensagem_id=? "
 				+ "AND g.destinatario = u.usuario_id";
 		try {

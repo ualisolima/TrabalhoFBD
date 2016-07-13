@@ -14,18 +14,23 @@ http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-	<context:component-scan base-package="br.ufc.TrabalhoFBD.DAO.Impl" />
+	<context:component-scan base-package="br.ufc.TrabalhoFBD.DAO.impl" />
 	<context:component-scan base-package="br.ufc.TrabalhoFBD.controller" />
+	<context:component-scan base-package="br.ufc.TrabalhoFBD.model" />
 	<mvc:annotation-driven />
 	<mvc:interceptors>
-		<bean class="br.ufc.TrabalhoFBD.InterceptadorGeral"/>
+		<bean class="br.ufc.TrabalhoFBD.interceptor.InterceptadorGeral"/>
 	</mvc:interceptors>
- <!--<bean id="alunoDAO" class="br.ufc.dao.AlunoDAOMem"/>-->
- <bean id="usuarioDAO" class="br.ufc.TrabalhoFBD.DAO.Impl.UsuarioDAOImpl"/>
+ 
+ <bean id="usuarioDAO" class="br.ufc.TrabalhoFBD.DAO.impl.UsuarioDAOImpl" />
+ <bean id="mensagemUDAO" class="br.ufc.TrabalhoFBD.DAO.impl.MensagemUsuarioDAOImpl" />
+ <bean id="grupoDAO" class="br.ufc.TrabalhoFBD.DAO.impl.GrupoDAOImpl" />
+ <bean id="mensagemGDAO" class="br.ufc.TrabalhoFBD.DAO.impl.MensagemGrupoDAOImpl" />
+ <bean id="enderecoDAO" class="br.ufc.TrabalhoFBD.DAO.impl.EnderecoDAOImpl" />
  
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/java_web_si" />
+		<property name="url" value="jdbc:mysql://localhost/trabalho_fbd" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean> 
@@ -38,8 +43,20 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- gerenciamento de jpa pelo spring -->
 	
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="mysqlDataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>
+
+	<!-- gerenciamento da transação pelo spring -->
 	
-	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+		
 	<tx:annotation-driven />
 
 </beans>

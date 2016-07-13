@@ -11,6 +11,7 @@ public class Usuario {
 	private String mNome;
 	private String uNome;
 	//Na tabela que é "possuida" pela entidade mais forte, a entidade vira um objeto comum;
+	
 	private Endereco endereco;
 	private String nCasa;
 	//Usuario possui vários telefones

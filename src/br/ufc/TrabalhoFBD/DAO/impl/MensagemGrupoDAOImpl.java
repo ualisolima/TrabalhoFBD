@@ -52,7 +52,7 @@ public class MensagemGrupoDAOImpl implements MensagemGrupoDAO{
 			List<MensagemGrupo> mensagens = new ArrayList<MensagemGrupo>();
 			while(rs.next()){
 				MensagemGrupo m = new MensagemGrupo();
-				m.setIdMensagem(rs.getLong("mensaem_id"));
+				m.setIdMensagem(rs.getLong("mensagem_id"));
 				m.setRemetente(getRemetente(m.getIdMensagem()));
 				m.setCorpo(rs.getString("corpo"));
 				m.setDataHoraEnvio(rs.getTimestamp("data_hora_envio"));
@@ -71,7 +71,7 @@ public class MensagemGrupoDAOImpl implements MensagemGrupoDAO{
 	@Override
 	public Usuario getRemetente(Long idMensagem) {
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "SELECT usuario_id, pNome, mNome, uNome, login FROM FROM usuario as u, mensagem_grupo as g  "
+		String sql = "SELECT usuario_id, pNome, mNome, uNome, login FROM usuario as u, mensagem_grupo as g  "
 				+ "WHERE g.mensagem_id=? "
 				+ "AND g.remetente = u.usuario_id";
 		try {

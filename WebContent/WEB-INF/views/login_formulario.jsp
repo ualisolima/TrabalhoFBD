@@ -13,6 +13,7 @@
 		Senha: <input type="password" name="senha" /> <br />
 		<input type="submit" value="ENVIAR" /> 
 	</form>
+	<button><a href="inserirUsuarioFormulario">Cadastre-se</a></button>
 	
 </body>
 </html>

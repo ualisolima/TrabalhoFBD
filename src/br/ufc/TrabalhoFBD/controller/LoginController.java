@@ -5,11 +5,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ufc.TrabalhoFBD.DAO.UsuarioDAO;
 import br.ufc.TrabalhoFBD.model.Usuario;
 
+@Transactional
 @Controller
 public class LoginController {
 
@@ -28,7 +30,7 @@ public class LoginController {
 		if(candidato!=null){
 			if(candidato.getSenha().equals(usuario.getSenha())){
 				session.setAttribute("usuario_logado", candidato);
-				return "home";
+				return "redirect:root";
 			}
 		}
 		return "redirect:loginFormulario";

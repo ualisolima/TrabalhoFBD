@@ -108,7 +108,8 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 			}
 			stmt.close();
 			conn.close();
-			return usuarios.get(0);
+			if (usuarios.size() > 0)
+				return usuarios.get(0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

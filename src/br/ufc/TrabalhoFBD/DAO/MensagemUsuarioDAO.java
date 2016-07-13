@@ -16,4 +16,6 @@ public void inserir(MensagemUsuario mensagemUsuario);
 	public Usuario getRemetente(Long idMensagem);
 	
 	public Usuario getDestinatario(Long idMensagem);
+
+	List<MensagemUsuario> getConversa(Long idUsuario1, Long idUsuario2);
 }

@@ -80,7 +80,7 @@ public class AmigoDAOImpl implements AmigoDAO{
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
 				Usuario u = new Usuario();
-				u = new UsuarioDAOImpl().recuperarById(rs.getLong("usuario_id"));
+				u = new UsuarioDAOImpl().recuperarById(rs.getLong("usuario_id2"));
 				amigos.add(u);
 				
 			}

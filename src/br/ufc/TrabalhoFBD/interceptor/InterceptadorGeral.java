@@ -12,13 +12,12 @@ public class InterceptadorGeral extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		
 		String URI = request.getRequestURI();
-		if(URI.endsWith("loginFormulario") ||
-		   URI.endsWith("login") || URI.endsWith("loginFormularioFuncionario")
-				   || URI.endsWith("loginFuncionario"))
+		if(URI.contains("login") ||
+				   URI.contains("inserirUsuario"))
 				return true;
 		 
 		
-		if(request.getSession().getAttribute("aluno_logado")!=null || request.getSession().getAttribute("funcionario_logado")!=null){
+		if(request.getSession().getAttribute("usuario_logado")!=null){
 			return true;
 		}
 		

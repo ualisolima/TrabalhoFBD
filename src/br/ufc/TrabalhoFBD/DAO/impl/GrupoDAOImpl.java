@@ -81,7 +81,7 @@ public class GrupoDAOImpl implements GrupoDAO {
 				g.setIdGrupo((rs.getLong("grupo_id")));
 				g.setNomeGrupo(rs.getString("nome"));
 				g.setDtCriacao(rs.getDate("data_criacao"));
-				g.setAmd(new UsuarioDAOImpl().recuperarById(rs.getLong("usuario_id")));
+				g.setAmd(new UsuarioDAOImpl().recuperarById(rs.getLong("adm_id")));
 				g.setUsuarios(getUsuarios(g.getIdGrupo()));
 				g.setMensagensGrupo(new MensagemGrupoDAOImpl().getMensagensGrupo(g));
 				grupos.add(g);	
@@ -98,7 +98,7 @@ public class GrupoDAOImpl implements GrupoDAO {
 
 	public List<Usuario> getUsuarios(Long idGrupo) {
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "SELECT usuario_id, pNome, mNome, uNome, login FROM FROM usuario as u, grupo_has_usuario as g  "
+		String sql = "SELECT u.usuario_id, pNome, mNome, uNome, login FROM usuario as u, grupo_has_usuario as g  "
 				+ "WHERE g.grupo_id=? "
 				+ "AND g.usuario_id = u.usuario_id";
 		try {
@@ -173,7 +173,7 @@ public class GrupoDAOImpl implements GrupoDAO {
 	public List<Grupo> getGruposAdm(Usuario usuario) {
 		// TODO Auto-generated method stub
 		Connection conn = FabricaDeConexao.retornarConexao();
-		String sql = "select * grupo WHERE adm_id = ?";
+		String sql = "select * FROM grupo WHERE adm_id = ?";
 		PreparedStatement stmt;
 		List<Grupo> grupos = new ArrayList<Grupo>();
 		try {
